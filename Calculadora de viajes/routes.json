@@ -1,0 +1,71 @@
+{
+    "routes": [
+        {
+            "id": "SD-STI",
+            "start": "Santo Domingo",
+            "end": "Santiago",
+            "distance": 155,
+            "tolls": [
+                {
+                    "name": "Peaje Las Américas",
+                    "cost": {
+                        "car": 60,
+                        "bus": 100,
+                        "bike": 150
+                    }
+                },
+                {
+                    "name": "Peaje 6 de Noviembre",
+                    "cost": {
+                        "car": 50,
+                        "bus": 90,
+                        "bike": 140
+                    }
+                }
+            ],
+            "estimatedTime": {
+                "car": 120,
+                "bus": 150,
+                "bike": 180
+            }
+        },
+        {
+            "id": "SD-PC",
+            "start": "Santo Domingo",
+            "end": "Punta Cana",
+            "distance": 193,
+            "tolls": [
+                {
+                    "name": "Peaje Coral",
+                    "cost": {
+                        "car": 80,
+                        "bus": 120,
+                        "bike": 180
+                    }
+                }
+            ],
+            "estimatedTime": {
+                "car": 135,
+                "bus": 165,
+                "bike": 200
+            }
+        }
+    ],
+    "vehicles": {
+        "car": {
+            "name": "Carro",
+            "baseRate": 15,
+            "emissionsPerKm": 0.12
+        },
+        "bus": {
+            "name": "Autobús",
+            "baseRate": 8,
+            "emissionsPerKm": 0.05
+        },
+        "bike": {
+            "name": "motocicleta",
+            "baseRate": 25,
+            "emissionsPerKm": 0.20
+        }
+    }
+}

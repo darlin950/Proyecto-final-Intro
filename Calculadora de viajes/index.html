@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Pasaje</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="light-theme">
+  <nav class="navbar">
+    <div class="nav-container">
+      <h1>Calculadora de Pasaje</h1>
+      <div class="nav-controls">
+       <select id="language" class="nav-select">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+        </select>
+        <button id="theme-toggle" class="theme-btn">🌙</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="calculator-section">
+      <div class="calculator-header">
+        <p class="subtitle">Planifica tu próximo viaje con el estimador de tarifas.</p>
+      </div>
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <span class="location-dot"></span>
+          <input type="text" id="start" placeholder="Punto de partida" list="popular-places">
+          <datalist id="popular-places">
+            <option value="Santo Domingo">
+            <option value="Santiago">
+            <option value="Puerto Plata">
+            <option value="Punta Cana">
+          </datalist>
+        </div>
+
+        <div class="input-wrapper">
+          <span class="location-square"></span>
+          <input type="text" id="destination" placeholder="Destino">
+          <button class="clear-btn" aria-label="Limpiar">×</button>
+        </div>
+
+        <div class="transport-options">
+          <div class="transport-option active" data-type="car">
+            <div class="transport-icon">🚗</div>
+            <div class="transport-info">
+              <span class="transport-name">Carro</span>
+
+            </div>
+          </div>
+          <div class="transport-option" data-type="bus">
+            <div class="transport-icon">🚌</div>
+            <div class="transport-info">
+              <span class="transport-name">Autobús</span>
+              <span class="transport-desc">Transporte público</span>
+            </div>
+          </div>
+          <div class="transport-option" data-type="bike">
+            <div class="fas fa-motorcycle">></div>
+            <div class="transport-info">
+              <span class="transport-name">Motocicleta</span>
+  
+            </div>
+          </div>
+        </div>
+
+        <div class="additional-options">
+          <label class="checkbox-wrapper">
+            <input type="checkbox" id="roundTrip">
+            <span>Ida y vuelta</span>
+          </label>
+          <label class="checkbox-wrapper">
+            <input type="checkbox" id="tollIncluded">
+            <span>Incluye peaje</span>
+          </label>
+          <select id="currency" class="currency-select">
+            <option value="DOP">DOP</option>
+            <option value="USD">USD</option>
+          </select>
+        </div>
+
+        <button id="calculate" class="calculate-btn">Calcular precio</button>
+      </div>
+
+      <div id="results" class="results hidden">
+        <h3>Resultados del viaje</h3>
+        <div class="results-grid">
+          <div class="result-item">
+            <span class="result-label">Costo total:</span>
+            <span id="total-cost" class="result-value">RD$ 0.00</span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">Distancia:</span>
+            <span id="distance" class="result-value">0 km</span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">Tiempo estimado:</span>
+            <span id="time" class="result-value">0 min</span>
+          </div>
+        </div>
+
+        <div class="cost-breakdown">
+          <h4>Desglose de costos</h4>
+          <div class="breakdown-item">
+            <span>Tarifa base:</span>
+            <span id="base-fare">RD$ 0.00</span>
+          </div>
+          <div class="breakdown-item">
+            <span>Peajes:</span>
+            <span id="toll-cost">RD$ 0.00</span>
+          </div>
+          <div class="breakdown-item">
+            <span>Impuestos:</span>
+            <span id="tax-cost">RD$ 0.00</span>
+          </div>
+        </div>
+
+        <div class="environmental-impact">
+          <h4>Impacto ambiental</h4>
+          <div class="impact-item">
+            <span>Emisiones CO2:</span>
+            <span id="emissions">0 kg</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-section">
+      <div id="map"></div>
+    </div>
+  </div>
+  <script>
+    // Language switcher for the Spanish version
+    document.getElementById('language').addEventListener('change', function() {
+      if(this.value === 'en'){
+        window.location.href = "index.en.html"; // English version
+      }
+    });
+  </script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="routes.json"></script>
+  <script src="script.js"></script>
+</body>
+</html>
